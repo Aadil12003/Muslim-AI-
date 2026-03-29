@@ -1,0 +1,8 @@
+streamlit
+requests
+Pillow
+PyMuPDF
+reportlab
+pandas
+pytesseract
+opencv-python-headless
