@@ -1,0 +1,3 @@
+## 2024-05-19 - Exclude X11 Dependencies with Headless OpenCV
+**Learning:** When using `opencv-python-headless` instead of `opencv-python`, there is no need to include X11 system dependencies like `libgl1-mesa-glx` in `packages.txt`. Including them unnecessarily inflates the deployment package size and memory footprint without providing any benefit, as the headless version is designed to run without GUI features.
+**Action:** Always verify if GUI capabilities are actually needed. If using `opencv-python-headless`, ensure that related system dependencies are excluded from package installation lists to maintain a lean deployment.
