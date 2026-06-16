@@ -1,0 +1,3 @@
+## 2024-05-24 - Unnecessary X11 Dependencies with Headless OpenCV
+**Learning:** When using `opencv-python-headless` instead of `opencv-python`, the application doesn't need X11/GUI dependencies like `libgl1-mesa-glx` because the headless version doesn't include GUI features. Including `libgl1-mesa-glx` unnecessarily inflates the deployment package size, slows down builds, and adds unneeded system requirements.
+**Action:** Always check if X11 dependencies like `libgl1-mesa-glx` can be safely removed when the project is already using `opencv-python-headless`.
