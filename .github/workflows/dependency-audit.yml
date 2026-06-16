@@ -1,0 +1,28 @@
+name: Dependency Audit
+
+on:
+  push:
+    paths:
+      - 'requirements.txt'
+  pull_request:
+    paths:
+      - 'requirements.txt'
+  schedule:
+    - cron: '0 0 * * 0' # Run weekly on Sunday
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install pip-audit
+
+      - name: Run pip-audit
+        run: pip-audit -r requirements.txt
