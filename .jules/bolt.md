@@ -1,0 +1,3 @@
+## 2024-05-24 - [Reduce Deployment Size with Headless OpenCV]
+**Learning:** When using `opencv-python-headless` instead of `opencv-python`, X11 system dependencies like `libgl1-mesa-glx` are not required. Including them in `packages.txt` unnecessarily inflates the deployment package size and increases container provisioning time.
+**Action:** Always verify if `opencv-python-headless` is used and remove `libgl1-mesa-glx` from system dependencies if present.
