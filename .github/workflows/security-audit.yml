@@ -8,6 +8,9 @@ on:
   schedule:
     - cron: '0 0 * * 0' # Run weekly on Sunday at midnight
 
+permissions:
+  contents: read
+
 jobs:
   audit:
     runs-on: ubuntu-latest
@@ -17,9 +20,13 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.x'
-      - name: Install dependencies and pip-audit
+      - name: Install dependencies and security tools
+        # Added security-related comments for clarity
+        # Install pip-audit for dependency scanning and bandit for SAST
         run: |
           python -m pip install --upgrade pip
-          pip install pip-audit
+          pip install pip-audit bandit
       - name: Run pip-audit
         run: pip-audit -r requirements.txt
+      - name: Run bandit
+        run: bandit -r .
