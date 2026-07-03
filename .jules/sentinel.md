@@ -7,3 +7,8 @@
 **Vulnerability:** Vulnerable dependencies could be introduced without detection.
 **Learning:** Adding automated scanning in CI/CD pipeline ensures all dependencies are checked for known vulnerabilities before they are merged.
 **Prevention:** Implementing a GitHub Actions workflow using `pip-audit` to scan `requirements.txt` on pushes, pull requests, and on a weekly schedule.
+
+## 2024-07-03 - Static Application Security Testing
+**Vulnerability:** Missing SAST tool (Bandit) and overly permissive GHA workflow permissions.
+**Learning:** Adding Bandit checks for security issues in Python code, and restricting GHA permissions to least-privilege minimizes risk.
+**Prevention:** Incorporate Bandit in security workflows and always enforce least privilege on CI pipeline permissions.
