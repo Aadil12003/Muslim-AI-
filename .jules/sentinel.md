@@ -7,3 +7,8 @@
 **Vulnerability:** Vulnerable dependencies could be introduced without detection.
 **Learning:** Adding automated scanning in CI/CD pipeline ensures all dependencies are checked for known vulnerabilities before they are merged.
 **Prevention:** Implementing a GitHub Actions workflow using `pip-audit` to scan `requirements.txt` on pushes, pull requests, and on a weekly schedule.
+
+## 2024-07-04 - GitHub Actions Token Privileges & SAST
+**Vulnerability:** Default GitHub Actions permissions were overly permissive and pipeline missed Static Application Security Testing (SAST).
+**Learning:** Using default GHA permissions unnecessarily expands the attack surface. Relying only on dependency audits misses insecure application code patterns.
+**Prevention:** Always restrict workflow permissions (e.g., `contents: read`) and incorporate SAST tools like `bandit` alongside dependency auditing.
