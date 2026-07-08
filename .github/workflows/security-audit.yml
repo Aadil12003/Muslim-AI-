@@ -8,6 +8,10 @@ on:
   schedule:
     - cron: '0 0 * * 0' # Run weekly on Sunday at midnight
 
+# Least privilege: restrict GITHUB_TOKEN permissions to read-only
+permissions:
+  contents: read
+
 jobs:
   audit:
     runs-on: ubuntu-latest
@@ -17,9 +21,13 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.x'
-      - name: Install dependencies and pip-audit
+      - name: Install security tools
+        # Install bandit for SAST and pip-audit for dependency scanning
         run: |
           python -m pip install --upgrade pip
-          pip install pip-audit
+          pip install pip-audit bandit
       - name: Run pip-audit
         run: pip-audit -r requirements.txt
+      - name: Run bandit
+        # Run Static Application Security Testing (SAST)
+        run: bandit -r .
